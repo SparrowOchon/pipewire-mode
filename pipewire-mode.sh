@@ -7,12 +7,12 @@ EXAMPLES=/usr/share/doc/pipewire/examples
 
 case "$1" in
     install-pipewire)
-        cat <<EOF |
-        apt -t unstable install \
+        sudo apt -t unstable install \
           pipewire wireplumber \
           pipewire-media-session- pulseaudio-module-bluetooth- \
           pipewire-audio-client-libraries pipewire-pulse \
           libspa-0.2-jack libspa-0.2-bluetooth \
+          libpipewire-0.3-dev libwireplumber-0.4-dev libspa-0.2-dev \
           qjackctl -y
         cp $EXAMPLES/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
         cp $EXAMPLES/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
@@ -32,7 +32,7 @@ EOF
         $SYSTEMCTL enable pulseaudio.service pulseaudio.socket
         ;;
     disable-pipewire)
-        $SYSTEMCTL disable pipewire-media-session.service
+        $SYSTEMCTL disable wireplumber.service
         $SYSTEMCTL disable pipewire-pulse.socket pipewire-pulse.service
         $SYSTEMCTL disable pipewire.socket pipewire.service
         ;;
