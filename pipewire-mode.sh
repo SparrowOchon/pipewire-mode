@@ -14,6 +14,7 @@ case "$1" in
           libspa-0.2-jack libspa-0.2-bluetooth \
           libpipewire-0.3-dev libwireplumber-0.4-dev libspa-0.2-dev \
           qjackctl -y
+        cat <<EOF |
         cp $EXAMPLES/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
         cp $EXAMPLES/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
         ldconfig
